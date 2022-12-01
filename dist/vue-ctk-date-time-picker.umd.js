@@ -27585,7 +27585,7 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/VueCtkDateTimePicker/index.vue?vue&type=template&id=172a1f16&
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/VueCtkDateTimePicker/index.vue?vue&type=template&id=44de229e&
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
@@ -28223,8 +28223,8 @@ var CustomInput_component = normalizeComponent(
 )
 
 /* harmony default export */ var CustomInput = (CustomInput_component.exports);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/VueCtkDateTimePicker/_subs/PickersContainer/index.vue?vue&type=template&id=6933daea&scoped=true&
-var PickersContainervue_type_template_id_6933daea_scoped_true_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/VueCtkDateTimePicker/_subs/PickersContainer/index.vue?vue&type=template&id=98ae1496&scoped=true&
+var PickersContainervue_type_template_id_98ae1496_scoped_true_render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c('Transition', {
@@ -28356,7 +28356,7 @@ var PickersContainervue_type_template_id_6933daea_scoped_true_render = function 
     }
   }) : _vm._e()], 1)])]);
 };
-var PickersContainervue_type_template_id_6933daea_scoped_true_staticRenderFns = [];
+var PickersContainervue_type_template_id_98ae1496_scoped_true_staticRenderFns = [];
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.includes.js
 var es_array_includes = __webpack_require__(6699);
@@ -29634,8 +29634,8 @@ var DatePicker_component = normalizeComponent(
 )
 
 /* harmony default export */ var DatePicker = (DatePicker_component.exports);
-;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/VueCtkDateTimePicker/_subs/PickersContainer/_subs/TimePicker.vue?vue&type=template&id=3c1593bc&scoped=true&
-var TimePickervue_type_template_id_3c1593bc_scoped_true_render = function render() {
+;// CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js??clonedRuleSet-82.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/VueCtkDateTimePicker/_subs/PickersContainer/_subs/TimePicker.vue?vue&type=template&id=722c37c9&scoped=true&
+var TimePickervue_type_template_id_722c37c9_scoped_true_render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c('div', {
@@ -29693,7 +29693,7 @@ var TimePickervue_type_template_id_3c1593bc_scoped_true_render = function render
     })], 2)]);
   }), 0);
 };
-var TimePickervue_type_template_id_3c1593bc_scoped_true_staticRenderFns = [];
+var TimePickervue_type_template_id_722c37c9_scoped_true_staticRenderFns = [];
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.async-iterator.js
 var es_symbol_async_iterator = __webpack_require__(2443);
@@ -30120,7 +30120,7 @@ var ArrayMinuteRange = function ArrayMinuteRange(start, end, twoDigit) {
 };
 var ArraySecondRange = function ArraySecondRange(start, end, twoDigit) {
   var step = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
-  var disabledMinutes = arguments.length > 4 ? arguments[4] : undefined;
+  var disabledSeconds = arguments.length > 4 ? arguments[4] : undefined;
   var len = Math.floor(end / step) - start;
   return Array(len).fill().map(function (_, idx) {
     var number = start + idx * step;
@@ -30128,7 +30128,7 @@ var ArraySecondRange = function ArraySecondRange(start, end, twoDigit) {
     return {
       value: number,
       item: txtMinute,
-      disabled: disabledMinutes.includes(txtMinute)
+      disabled: disabledSeconds.includes(txtMinute)
     };
   });
 };
@@ -30428,7 +30428,7 @@ var debounce = function debounce(fn, time) {
     onScrollSeconds: debounce(function (scroll) {
       var value = this.getValue(scroll);
       var second = value * this.secondInterval;
-      if (this.isSecondsDisabled(minute)) return;
+      if (this.isSecondsDisabled(second)) return;
       this.second = second === 60 ? 59 : second;
       this.emitValue();
     }, 100),
@@ -30552,17 +30552,18 @@ var debounce = function debounce(fn, time) {
       var hour = this.isTwelveFormat && (tmpHour === 24 || tmpHour === 12) ? this.apm.toLowerCase() === 'am' ? 0 : 12 : tmpHour;
       hour = (hour < 10 ? '0' : '') + hour;
       var minute = this.minute ? (this.minute < 10 ? '0' : '') + this.minute : '00';
-      var time = "".concat(hour, ":").concat(minute);
+      var second = this.second ? (this.second < 10 ? '0' : '') + this.second : '00';
+      var time = "".concat(hour, ":").concat(minute, ":").concat(second);
       this.$emit('input', time);
     }
   }
 });
 ;// CONCATENATED MODULE: ./src/VueCtkDateTimePicker/_subs/PickersContainer/_subs/TimePicker.vue?vue&type=script&lang=js&
  /* harmony default export */ var _subs_TimePickervue_type_script_lang_js_ = (TimePickervue_type_script_lang_js_); 
-;// CONCATENATED MODULE: ./node_modules/mini-css-extract-plugin/dist/loader.js??clonedRuleSet-64.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-64.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-64.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-64.use[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/VueCtkDateTimePicker/_subs/PickersContainer/_subs/TimePicker.vue?vue&type=style&index=0&id=3c1593bc&prod&lang=scss&scoped=true&
+;// CONCATENATED MODULE: ./node_modules/mini-css-extract-plugin/dist/loader.js??clonedRuleSet-64.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-64.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-64.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-64.use[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/VueCtkDateTimePicker/_subs/PickersContainer/_subs/TimePicker.vue?vue&type=style&index=0&id=722c37c9&prod&lang=scss&scoped=true&
 // extracted by mini-css-extract-plugin
 
-;// CONCATENATED MODULE: ./src/VueCtkDateTimePicker/_subs/PickersContainer/_subs/TimePicker.vue?vue&type=style&index=0&id=3c1593bc&prod&lang=scss&scoped=true&
+;// CONCATENATED MODULE: ./src/VueCtkDateTimePicker/_subs/PickersContainer/_subs/TimePicker.vue?vue&type=style&index=0&id=722c37c9&prod&lang=scss&scoped=true&
 
 ;// CONCATENATED MODULE: ./src/VueCtkDateTimePicker/_subs/PickersContainer/_subs/TimePicker.vue
 
@@ -30575,11 +30576,11 @@ var debounce = function debounce(fn, time) {
 
 var TimePicker_component = normalizeComponent(
   _subs_TimePickervue_type_script_lang_js_,
-  TimePickervue_type_template_id_3c1593bc_scoped_true_render,
-  TimePickervue_type_template_id_3c1593bc_scoped_true_staticRenderFns,
+  TimePickervue_type_template_id_722c37c9_scoped_true_render,
+  TimePickervue_type_template_id_722c37c9_scoped_true_staticRenderFns,
   false,
   null,
-  "3c1593bc",
+  "722c37c9",
   null
   
 )
@@ -31001,7 +31002,7 @@ var ButtonValidate_component = normalizeComponent(
     },
     format: {
       type: String,
-      default: 'YYYY-MM-DD hh:mm a'
+      default: 'YYYY-MM-DD hh:mm:ss'
     },
     locale: {
       type: String,
@@ -31133,7 +31134,7 @@ var ButtonValidate_component = normalizeComponent(
         });
       },
       get: function get() {
-        return this.value ? moment_default()(this.value, 'YYYY-MM-DD HH:mm:ii').format('HH:mm:ii') : null;
+        return this.value ? moment_default()(this.value, 'YYYY-MM-DD HH:mm:ss').format('HH:mm:ss') : null;
       }
     },
     date: {
@@ -31245,10 +31246,10 @@ var ButtonValidate_component = normalizeComponent(
 });
 ;// CONCATENATED MODULE: ./src/VueCtkDateTimePicker/_subs/PickersContainer/index.vue?vue&type=script&lang=js&
  /* harmony default export */ var _subs_PickersContainervue_type_script_lang_js_ = (PickersContainervue_type_script_lang_js_); 
-;// CONCATENATED MODULE: ./node_modules/mini-css-extract-plugin/dist/loader.js??clonedRuleSet-64.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-64.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-64.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-64.use[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/VueCtkDateTimePicker/_subs/PickersContainer/index.vue?vue&type=style&index=0&id=6933daea&prod&lang=scss&scoped=true&
+;// CONCATENATED MODULE: ./node_modules/mini-css-extract-plugin/dist/loader.js??clonedRuleSet-64.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-64.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-64.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-64.use[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/VueCtkDateTimePicker/_subs/PickersContainer/index.vue?vue&type=style&index=0&id=98ae1496&prod&lang=scss&scoped=true&
 // extracted by mini-css-extract-plugin
 
-;// CONCATENATED MODULE: ./src/VueCtkDateTimePicker/_subs/PickersContainer/index.vue?vue&type=style&index=0&id=6933daea&prod&lang=scss&scoped=true&
+;// CONCATENATED MODULE: ./src/VueCtkDateTimePicker/_subs/PickersContainer/index.vue?vue&type=style&index=0&id=98ae1496&prod&lang=scss&scoped=true&
 
 ;// CONCATENATED MODULE: ./src/VueCtkDateTimePicker/_subs/PickersContainer/index.vue
 
@@ -31261,11 +31262,11 @@ var ButtonValidate_component = normalizeComponent(
 
 var PickersContainer_component = normalizeComponent(
   _subs_PickersContainervue_type_script_lang_js_,
-  PickersContainervue_type_template_id_6933daea_scoped_true_render,
-  PickersContainervue_type_template_id_6933daea_scoped_true_staticRenderFns,
+  PickersContainervue_type_template_id_98ae1496_scoped_true_render,
+  PickersContainervue_type_template_id_98ae1496_scoped_true_staticRenderFns,
   false,
   null,
-  "6933daea",
+  "98ae1496",
   null
   
 )
@@ -31530,7 +31531,7 @@ var updateMomentLocale = function updateMomentLocale(locale, firstDayOfWeek) {
 };
 var nearestMinutes = function nearestMinutes(interval, date, format) {
   var roundedMinutes = Math.ceil(date.minute() / interval) * interval;
-  return moment_default()(date.clone().minute(roundedMinutes).second(0), format);
+  return moment_default()(date.clone().minute(roundedMinutes).second(date.second()), format);
 };
 
 /**
@@ -31735,13 +31736,13 @@ var defaultBehaviour = {
     },
     getDateTimeToSend: function getDateTimeToSend(value) {
       var dateTime = typeof value !== 'undefined' ? value : this.value;
-      var dateToSend = dateTime ? moment_default()(dateTime, 'YYYY-MM-DD HH:mm') : null;
-      var dateTimeToSend = dateToSend ? nearestMinutes(this.minuteInterval, moment_default()(dateToSend), 'YYYY-MM-DD HH:mm').format(this.formatOutput) : null;
+      var dateToSend = dateTime ? moment_default()(dateTime, 'YYYY-MM-DD HH:mm:ss') : null;
+      var dateTimeToSend = dateToSend ? nearestMinutes(this.minuteInterval, moment_default()(dateToSend), 'YYYY-MM-DD HH:mm:ss').format(this.formatOutput) : null;
       return dateTimeToSend;
     },
     getDateTime: function getDateTime() {
       var date = this.value ? moment_default()(this.value, this.formatOutput) : null;
-      return date ? nearestMinutes(this.minuteInterval, date, this.formatOutput).format('YYYY-MM-DD HH:mm') : null;
+      return date ? nearestMinutes(this.minuteInterval, date, this.formatOutput).format('YYYY-MM-DD HH:mm:ss') : null;
     },
     /**
      * Closes the datepicker
@@ -31801,10 +31802,10 @@ var defaultBehaviour = {
 });
 ;// CONCATENATED MODULE: ./src/VueCtkDateTimePicker/index.vue?vue&type=script&lang=js&
  /* harmony default export */ var src_VueCtkDateTimePickervue_type_script_lang_js_ = (VueCtkDateTimePickervue_type_script_lang_js_); 
-;// CONCATENATED MODULE: ./node_modules/mini-css-extract-plugin/dist/loader.js??clonedRuleSet-64.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-64.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-64.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-64.use[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/VueCtkDateTimePicker/index.vue?vue&type=style&index=0&id=172a1f16&prod&lang=scss&
+;// CONCATENATED MODULE: ./node_modules/mini-css-extract-plugin/dist/loader.js??clonedRuleSet-64.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-64.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-64.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-64.use[3]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/VueCtkDateTimePicker/index.vue?vue&type=style&index=0&id=44de229e&prod&lang=scss&
 // extracted by mini-css-extract-plugin
 
-;// CONCATENATED MODULE: ./src/VueCtkDateTimePicker/index.vue?vue&type=style&index=0&id=172a1f16&prod&lang=scss&
+;// CONCATENATED MODULE: ./src/VueCtkDateTimePicker/index.vue?vue&type=style&index=0&id=44de229e&prod&lang=scss&
 
 ;// CONCATENATED MODULE: ./src/VueCtkDateTimePicker/index.vue
 

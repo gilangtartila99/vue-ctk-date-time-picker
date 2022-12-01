@@ -77,7 +77,7 @@
       }
     })
   }
-  const ArraySecondRange = (start, end, twoDigit, step = 1, disabledMinutes) => {
+  const ArraySecondRange = (start, end, twoDigit, step = 1, disabledSeconds) => {
     const len = Math.floor(end / step) - start
 
     return Array(len).fill().map((_, idx) => {
@@ -86,7 +86,7 @@
       return {
         value: number,
         item: txtMinute,
-        disabled: disabledMinutes.includes(txtMinute)
+        disabled: disabledSeconds.includes(txtMinute)
       }
     })
   }
@@ -339,7 +339,7 @@
       onScrollSeconds: debounce(function (scroll) {
         const value = this.getValue(scroll)
         const second = value * this.secondInterval
-        if (this.isSecondsDisabled(minute)) return
+        if (this.isSecondsDisabled(second)) return
         this.second = second === 60 ? 59 : second
         this.emitValue()
       }, 100),
@@ -466,7 +466,8 @@
           : tmpHour
         hour = (hour < 10 ? '0' : '') + hour
         const minute = this.minute ? (this.minute < 10 ? '0' : '') + this.minute : '00'
-        const time = `${hour}:${minute}`
+        const second = this.second ? (this.second < 10 ? '0' : '') + this.second : '00'
+        const time = `${hour}:${minute}:${second}`
         this.$emit('input', time)
       }
     }

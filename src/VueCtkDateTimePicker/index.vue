@@ -102,7 +102,7 @@
 
   const nearestMinutes = (interval, date, format) => {
     const roundedMinutes = Math.ceil(date.minute() / interval) * interval
-    return moment(date.clone().minute(roundedMinutes).second(0), format)
+    return moment(date.clone().minute(roundedMinutes).second(date.second()), format)
   }
 
   /**
@@ -295,16 +295,16 @@
       getDateTimeToSend (value) {
         const dateTime = typeof value !== 'undefined' ? value : this.value
         const dateToSend = dateTime
-          ? moment(dateTime, 'YYYY-MM-DD HH:mm')
+          ? moment(dateTime, 'YYYY-MM-DD HH:mm:ss')
           : null
-        const dateTimeToSend = dateToSend ? nearestMinutes(this.minuteInterval, moment(dateToSend), 'YYYY-MM-DD HH:mm').format(this.formatOutput) : null
+        const dateTimeToSend = dateToSend ? nearestMinutes(this.minuteInterval, moment(dateToSend), 'YYYY-MM-DD HH:mm:ss').format(this.formatOutput) : null
         return dateTimeToSend
       },
       getDateTime () {
         const date = this.value
           ? moment(this.value, this.formatOutput)
           : null
-        return date ? nearestMinutes(this.minuteInterval, date, this.formatOutput).format('YYYY-MM-DD HH:mm') : null
+        return date ? nearestMinutes(this.minuteInterval, date, this.formatOutput).format('YYYY-MM-DD HH:mm:ss') : null
       },
       /**
        * Closes the datepicker

@@ -277,7 +277,8 @@
             value: '2018-04-07 20:26',
             editOption: false,
             options: {
-              format: 'YYYY-MM-DD HH:mm',
+              format: 'YYYY-MM-DD HH:mm:ss',
+              formatted: 'YYYY-MM-DD HH:mm:ss',
               id: 'DateTimePicker',
               minDate: '2018-04-05',
               maxDate: '2018-04-24'

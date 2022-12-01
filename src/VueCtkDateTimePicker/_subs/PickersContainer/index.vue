@@ -120,7 +120,7 @@
       onlyDate: { type: Boolean, default: false },
       onlyTime: { type: Boolean, default: null },
       minuteInterval: { type: [String, Number], default: 1 },
-      format: { type: String, default: 'YYYY-MM-DD hh:mm a' },
+      format: { type: String, default: 'YYYY-MM-DD hh:mm:ss' },
       locale: { type: String, default: null },
       maxDate: { type: String, default: null },
       minDate: { type: String, default: null },
@@ -204,7 +204,7 @@
         },
         get () {
           return this.value
-            ? moment(this.value, 'YYYY-MM-DD HH:mm:ii').format('HH:mm:ii')
+            ? moment(this.value, 'YYYY-MM-DD HH:mm:ss').format('HH:mm:ss')
             : null
         }
       },
