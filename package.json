@@ -75,7 +75,7 @@
   "main": "dist/vue-ctk-date-time-picker.common.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chronotruck/vue-ctk-date-time-picker.git"
+    "url": "git+https://github.com/gilangtartila99/vue-ctk-date-time-picker.git"
   },
   "types": "dist/index.d.ts"
 }
