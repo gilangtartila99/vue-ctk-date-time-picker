@@ -204,7 +204,7 @@
         },
         get () {
           return this.value
-            ? moment(this.value, 'YYYY-MM-DD HH:mm').format('HH:mm')
+            ? moment(this.value, 'YYYY-MM-DD HH:mm:ii').format('HH:mm:ii')
             : null
         }
       },
@@ -222,7 +222,7 @@
               : this.range
                 ? { start: this.value.start ? moment(this.value.start).format('YYYY-MM-DD') : null,
                     end: this.value.end ? moment(this.value.end).format('YYYY-MM-DD') : null }
-                : moment(this.value, 'YYYY-MM-DD HH:mm').format('YYYY-MM-DD')
+                : moment(this.value, 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD')
             : this.range
               ? { start: null, end: null }
               : null
@@ -275,11 +275,11 @@
         return this.onlyTime
           ? `${moment().format('YYYY-MM-DD')} ${value}`
           : type === 'date'
-            ? this.time ? `${value} ${this.time}` : `${value} ${moment().format('HH:mm')}`
+            ? this.time ? `${value} ${this.time}` : `${value} ${moment().format('HH:mm:ss')}`
             : this.date ? `${this.date} ${value}` : `${moment().format('YYYY-MM-DD')} ${value}`
       },
       getTransitionName (date) {
-        const isBigger = moment(date) > moment(`${this.date || moment().format('YYYY-MM-DD')} ${this.time || moment().format('HH:mm')}`)
+        const isBigger = moment(date) > moment(`${this.date || moment().format('YYYY-MM-DD')} ${this.time || moment().format('HH:mm:ss')}`)
         this.transitionName = isBigger ? 'slidevnext' : 'slidevprev'
       },
       getDateFormat () {

@@ -13,7 +13,7 @@
       class="time-picker-column flex-1 flex flex-direction-column text-center"
       @scroll="noScrollEvent
         ? null
-        : column.type === 'hours' ? onScrollHours($event) : column.type === 'minutes' ? onScrollMinutes($event) : onScrollApms($event)
+        : column.type === 'hours' ? onScrollHours($event) : column.type === 'minutes' ? onScrollMinutes($event) : column.type === 'seconds' ? onScrollSeconds($event) : onScrollApms($event)
       "
     >
       <div>
@@ -77,6 +77,19 @@
       }
     })
   }
+  const ArraySecondRange = (start, end, twoDigit, step = 1, disabledMinutes) => {
+    const len = Math.floor(end / step) - start
+
+    return Array(len).fill().map((_, idx) => {
+      const number = start + idx * step
+      const txtMinute = (twoDigit && (number < 10) ? '0' : '') + number
+      return {
+        value: number,
+        item: txtMinute,
+        disabled: disabledMinutes.includes(txtMinute)
+      }
+    })
+  }
 
   const debounce = (fn, time) => {
     let timeout
@@ -103,12 +116,14 @@
       disabledHours: { type: Array, default: () => ([]) },
       minTime: { type: String, default: null },
       behaviour: { type: Object, default: () => ({}) },
-      maxTime: { type: String, default: null }
+      maxTime: { type: String, default: null },
+      showSeconds: { type: Boolean, default: true }
     },
     data () {
       return {
         hour: null,
         minute: null,
+        second: null,
         apm: null,
         oldvalue: this.value,
         columnPadding: {},
@@ -144,6 +159,10 @@
         const twoDigit = this.format.includes('mm') || this.format.includes('MM')
         return ArrayMinuteRange(0, 60, twoDigit, this.minuteInterval, this._disabledMinutes)
       },
+      seconds () {
+        const twoDigit = this.format.includes('ss') || this.format.includes('SS')
+        return ArraySecondRange(0, 60, twoDigit, this.minuteInterval, this._disabledSeconds)
+      },
       apms () {
         return this.isTwelveFormat
           ? this.format.includes('A')
@@ -155,6 +174,7 @@
         return [
           { type: 'hours', items: this.hours },
           { type: 'minutes', items: this.minutes },
+          ...(this.showSeconds ? [{ type: 'seconds', items: this.seconds }] : []),
           ...(this.apms ? [{ type: 'apms', items: this.apms }] : [])
         ]
       },
@@ -243,6 +263,28 @@
         } else {
           return []
         }
+      },
+      _disabledSeconds () {
+        let minEnabledSecond = 0
+        let maxEnabledSecond = 60
+
+        if (minEnabledSecond !== 0 || maxEnabledSecond !== 60) {
+          const enabledSeconds = [...Array(60)]
+            .map((_, i) => i)
+            .filter(m => m >= minEnabledSecond && m <= maxEnabledSecond)
+
+          if (!enabledSeconds.includes(this.second) && this.behaviour && this.behaviour.time && this.behaviour.time.nearestIfDisabled) {
+            this.second = enabledSeconds[0] // eslint-disable-line
+            this.emitValue()
+          }
+
+          return [...Array(60)]
+            .map((_, i) => i)
+            .filter(m => !enabledSeconds.includes(m))
+            .map(m => m < 10 ? '0' + m : '' + m)
+        } else {
+          return []
+        }
       }
     },
     watch: {
@@ -294,6 +336,13 @@
         this.minute = minute === 60 ? 59 : minute
         this.emitValue()
       }, 100),
+      onScrollSeconds: debounce(function (scroll) {
+        const value = this.getValue(scroll)
+        const second = value * this.secondInterval
+        if (this.isSecondsDisabled(minute)) return
+        this.second = second === 60 ? 59 : second
+        this.emitValue()
+      }, 100),
       onScrollApms: debounce(function (scroll) {
         const value = this.getValue(scroll)
         if (this.apms && this.apms[value] && this.apm !== this.apms[value].value) {
@@ -307,8 +356,9 @@
         return (type === 'hours'
           ? this.hour
           : type === 'minutes'
-            ? this.minute
-            : this.apm ? this.apm : null) === value
+            ? this.minute 
+            : type === 'seconds'
+              ? this.second : this.apm ? this.apm : null) === value
       },
       isHoursDisabled (h) {
         const hourToTest = this.apmType
@@ -319,6 +369,10 @@
       isMinutesDisabled (m) {
         m = m < 10 ? '0' + m : '' + m
         return this._disabledMinutes.includes(m)
+      },
+      isSecondsDisabled (m) {
+        m = m < 10 ? '0' + m : '' + m
+        return this._disabledSeconds.includes(m)
       },
       buildComponent () {
         if (this.isTwelveFormat && !this.apms) window.console.error(`VueCtkDateTimePicker - Format Error : To have the twelve hours format, the format must have "A" or "a" (Ex : ${this.format} a)`)
@@ -337,6 +391,7 @@
           : hourToSet
 
         this.minute = parseInt(moment(this.value, this.format).format('mm'))
+        this.second = parseInt(moment(this.value, this.format).format('ss'))
         this.apm = this.apms && this.value
           ? this.hour > 12
             ? this.apms.length > 1 ? this.apms[1].value : this.apms[0].value
@@ -361,7 +416,7 @@
       },
       async initPositionView () {
         this.noScrollEvent = true
-        const containers = ['hours', 'minutes']
+        const containers = ['hours', 'minutes', 'seconds']
         if (this.apms) containers.push('apms')
 
         await this.$nextTick()
@@ -395,6 +450,8 @@
           this.hour = item
         } else if (type === 'minutes') {
           this.minute = item
+        }  else if (type === 'seconds') {
+          this.second = item
         } else if (type === 'apms' && this.apm !== item) {
           const newHour = item === 'pm' || item === 'PM' ? this.hour + 12 : this.hour - 12
           this.hour = newHour
