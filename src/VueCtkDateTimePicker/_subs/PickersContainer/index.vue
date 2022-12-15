@@ -233,7 +233,7 @@
         const time = moment(this.minDate).format(this.timeFormat)
         if (
           this.minDate &&
-          time !== '00:00' &&
+          time !== '00:00:00' &&
           moment(this.date).isSame(moment(this.minDate, 'YYYY-MM-DD'))
         ) {
           return time
@@ -243,7 +243,7 @@
       maxTime () {
         const time = moment(this.maxDate).format(this.timeFormat)
         if (this.maxDate &&
-          time !== '00:00' &&
+          time !== '00:00:00' &&
           moment(this.date).isSame(moment(this.maxDate, 'YYYY-MM-DD'))) {
           return time
         }

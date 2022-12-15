@@ -205,7 +205,7 @@
             .map((_, i) => i)
             .filter(h => h >= minEnabledHour && h <= maxEnabledHour)
 
-          if (!enabledHours.includes(this.hour) && this.behaviour && this.behaviour.time && this.behaviour.time.nearestIfDisabled) {
+          if (this.hour && !enabledHours.includes(this.hour) && this.behaviour && this.behaviour.time && this.behaviour.time.nearestIfDisabled) {
             this.hour = enabledHours[0] // eslint-disable-line
             this.emitValue()
           }
@@ -251,7 +251,7 @@
             .map((_, i) => i)
             .filter(m => m >= minEnabledMinute && m <= maxEnabledMinute)
 
-          if (!enabledMinutes.includes(this.minute) && this.behaviour && this.behaviour.time && this.behaviour.time.nearestIfDisabled) {
+          if (this.minute && !enabledMinutes.includes(this.minute) && this.behaviour && this.behaviour.time && this.behaviour.time.nearestIfDisabled) {
             this.minute = enabledMinutes[0] // eslint-disable-line
             this.emitValue()
           }
@@ -273,7 +273,7 @@
             .map((_, i) => i)
             .filter(m => m >= minEnabledSecond && m <= maxEnabledSecond)
 
-          if (!enabledSeconds.includes(this.second) && this.behaviour && this.behaviour.time && this.behaviour.time.nearestIfDisabled) {
+          if (this.second && !enabledSeconds.includes(this.second) && this.behaviour && this.behaviour.time && this.behaviour.time.nearestIfDisabled) {
             this.second = enabledSeconds[0] // eslint-disable-line
             this.emitValue()
           }
